@@ -68,14 +68,18 @@ export default {
 }
 .checkmark {
   display: block;
-  width: 80px;
-  height: 80px;
+  width: 20px;
+  height: 20px;
   background-color: #fff;
-  border-radius: 10px;
+  border-radius: 3px;
   position: relative;
-  border: 1px solid black;
+  border: 1px solid grey;
   transition: background-color 0.5s;
   cursor: pointer;
+}
+
+.checkmark:hover {
+  border: 1px solid black;
 }
 
 #check:checked + .checkmark,
@@ -87,10 +91,10 @@ export default {
 .checkmark::after {
   content: '';
   position: absolute;
-  width: 25px;
-  height: 45px;
-  border-right: 5px solid white;
-  border-bottom: 5px solid white;
+  width: 4px;
+  height: 7px;
+  border-right: 2px solid white;
+  border-bottom: 2px solid white;
   top: 40%;
   left: 50%;
   transform: translate(-50%, -50%) rotateZ(40deg);
