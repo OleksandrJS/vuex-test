@@ -8,6 +8,14 @@
       <button @click="changeTheme">Change Theme</button>
       <p>{{ getTheme }}</p>
     </div>
+    <div class="checkbox-wrapper">
+      <input type="checkbox" id="check" v-model="checkData" />
+      <label for="check" class="checkmark"></label>
+      <input type="checkbox" id="check2" />
+      <label for="check2" class="checkmark"></label>
+      <input type="checkbox" id="check3" />
+      <label for="check3" class="checkmark"></label>
+    </div>
   </div>
 </template>
 
@@ -28,17 +36,11 @@ export default {
   data() {
     return {
       posts: [],
+      checkData: '',
     };
   },
   async mounted() {
-    // const res = await fetch(
-    //   'https://jsonplaceholder.typicode.com/posts?_limit=3',
-    // );
-    // const json = await res.json();
-    // this.posts = json;
-    //*****************
     this.$store.dispatch('fetchPosts');
-    // this.fetchPosts()
   },
   components: {},
   methods: {
@@ -59,5 +61,50 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+.checkbox-wrapper {
+  display: flex;
+  justify-content: center;
+}
+.checkmark {
+  display: block;
+  width: 80px;
+  height: 80px;
+  background-color: #fff;
+  border-radius: 10px;
+  position: relative;
+  border: 1px solid black;
+  transition: background-color 0.5s;
+  cursor: pointer;
+}
+
+#check:checked + .checkmark,
+#check2:checked + .checkmark,
+#check3:checked + .checkmark {
+  background-color: #08bb68;
+}
+
+.checkmark::after {
+  content: '';
+  position: absolute;
+  width: 25px;
+  height: 45px;
+  border-right: 5px solid white;
+  border-bottom: 5px solid white;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotateZ(40deg);
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+#check:checked + .checkmark::after,
+#check2:checked + .checkmark::after,
+#check3:checked + .checkmark::after {
+  opacity: 1;
+}
+#check,
+#check2,
+#check3 {
+  opacity: 0;
 }
 </style>
